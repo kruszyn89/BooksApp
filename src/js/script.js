@@ -15,14 +15,6 @@
       book: '#template-book',
     },
 
-    bookData: {
-      id: '.book.id',
-      name: 'book.name',
-      price: 'book.price',
-      rating: 'book.rating',
-      image: 'book.image',
-    },
-
   };
 
   const templates = { 
@@ -48,13 +40,25 @@
   }
 
   function initActions() {
-    // dodaję pustą tablicę wewnątrz funkcji initActions()
     const favoriteBooks = [];
-    const selectedImage = document.querySelector(select.containerOf.image);
-    console.log(selectedImage);
+    // console.log('favoriteBooks', favoriteBooks);
+    const bookImages = document.querySelectorAll(select.containerOf.image);
+    // console.log('bookList', booksList);
+    // console.log('bookImages', bookImages);
+    for (let image of bookImages) {
+      image.addEventListener('click', function(event) {
+        event.preventDefault();
+        const bookID = image.getAttribute('data-id');
+        console.log(favoriteBooks);
+        favoriteBooks.push(bookID);
+        if (favoriteBooks.includes(bookID)) {
+          image.classList.toggle('favorite');
+        }
+      });
 
 
-  }
+    }
+  } 
 
   render();
   initActions();
